@@ -1,3 +1,5 @@
+import math
+
 class DiaryEntry:
     def __init__(self, title, contents):
 
@@ -21,13 +23,13 @@ class DiaryEntry:
 
 
     def reading_time(self, wpm):
-        # Parameters:
-        #   wpm: an integer representing the number of words the user can read 
-        #        per minute
-        # Returns:
-        #   int: an estimate of the reading time in minutes for the contents at
-        #        the given wpm.
-        pass
+        
+        if wpm == 0:
+            raise Exception("Cannot calculate reading time")
+
+        contents_word_count = len(self.contents.split())
+        return math.ceil(contents_word_count / wpm)
+
 
     def reading_chunk(self, wpm, minutes):
         # Parameters
