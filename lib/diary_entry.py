@@ -1,9 +1,11 @@
 class DiaryEntry:
     def __init__(self, title, contents):
-        # Parameters:
-        #   title: string
-        #   contents: string
-        pass
+
+        # EMPTY -- ERROR
+        if title == "" or contents == "":
+            raise Exception("Diary entries must have titles and contents")
+        self.title = title
+        self.contents = contents
 
     def format(self):
         # Returns:
