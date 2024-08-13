@@ -78,3 +78,66 @@ def test_reading_time_wpm_of_zero():
     with pytest.raises(Exception) as err:
         entry.reading_time(0)
     assert str(err.value) == "Cannot calculate reading time"
+
+
+'''
+ARG : contents = 6 words, wpm = 2, minutes = 1
+RETURN : first 2 words
+'''
+def test_reading_chunk_with_two_wpm_and_one_minute():
+    entry = DiaryEntry("My Title", "one two three four five six")
+    result = entry.reading_chunk(2, 1)
+    assert result == "one two"
+
+
+
+'''
+ARG : contents = 6 words, wpm = 2, minutes = 2
+RETURN : first 4 words
+'''
+def test_reading_chunk_with_two_wpm_and_two_minutes():
+    entry = DiaryEntry("My Title", "one two three four five six")
+    result = entry.reading_chunk(2, 2)
+    assert result == "one two three four"
+    
+
+
+'''
+ARG : contents = 6 words, wpm = 2, minutes = 1
+1st FUNCTION CALL RETURNS "one two"
+2nd FUNCTION CALL RETURNS "three four"
+3rd FUNCTION CALL RETURNS "five six"
+'''
+def test_reading_chunk_with_two_wpm_and_one_minute_called_multiple_times():
+    entry = DiaryEntry("My Title", "one two three four five six")
+    assert entry.reading_chunk(2, 1) == "one two"
+    assert entry.reading_chunk(2, 1) == "three four"
+    assert entry.reading_chunk(2, 1) == "five six"
+
+
+
+'''
+ARG : 6 words
+FUNCTION CALLED REPEATEDLY
+LAST CHUNK = last words in text, even shorted than words user can read
+LAST FUNCTION CALL = restart from beginning
+'''
+def test_reading_chunk_wraps_around_on_multiple_calls():
+    entry = DiaryEntry("My Title", "one two three four five six")
+    assert entry.reading_chunk(2, 2) == "one two three four"
+    assert entry.reading_chunk(2, 2) == "five six"
+    assert entry.reading_chunk(2, 2) == "one two three four"
+
+
+
+'''
+ARG : 6 words
+FUNCTION CALLED REPEATEDLY -- WITH AN EXACT ENDING
+LAST CHUNK = LAST WORDS IN TEXT
+NEXT CALL = START FROM BEGINNING
+'''
+def test_reading_chunk_wraps_around_on_multiple_calls_exact_ending():
+    entry = DiaryEntry("My Title", "one two three four five six")
+    assert entry.reading_chunk(2, 2) == "one two three four"
+    assert entry.reading_chunk(2, 1) == "five six"
+    assert entry.reading_chunk(2, 2) == "one two three four"
