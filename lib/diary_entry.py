@@ -4,6 +4,7 @@ class DiaryEntry:
         # EMPTY -- ERROR
         if title == "" or contents == "":
             raise Exception("Diary entries must have titles and contents")
+        
         self.title = title
         self.contents = contents
 
@@ -12,10 +13,12 @@ class DiaryEntry:
         
         return f"{self.title} : {self.contents}"
 
+
     def count_words(self):
-        # Returns:
-        #   int: the number of words in the diary entry
-        pass
+        
+        words = self.format().split()
+        return len(words)
+
 
     def reading_time(self, wpm):
         # Parameters:
