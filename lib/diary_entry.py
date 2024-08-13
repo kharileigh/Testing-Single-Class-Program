@@ -7,11 +7,10 @@ class DiaryEntry:
         self.title = title
         self.contents = contents
 
+
     def format(self):
-        # Returns:
-        #   A formatted diary entry, for example:
-        #   "My Title: These are the contents"
-        pass
+        
+        return f"{self.title} : {self.contents}"
 
     def count_words(self):
         # Returns:
