@@ -25,7 +25,7 @@ def test_format_with_title_and_contents_given():
 
 
 '''
--------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 ARG : title & contents
 RETURN : num of words in title & contents
 '''
@@ -39,7 +39,7 @@ def test_count_words_in_both_title_and_contents():
 
 
 '''
------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 ARG : wpm = 2, text = 2 words
 RETURN : 1 minute
 '''
@@ -86,7 +86,7 @@ def test_reading_time_wpm_of_zero():
 
 
 '''
--------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 ARG : contents = 6 words, wpm = 2, minutes = 1
 RETURN : first 2 words
 '''
@@ -148,3 +148,6 @@ def test_reading_chunk_wraps_around_on_multiple_calls_exact_ending():
     assert entry.reading_chunk(2, 2) == "one two three four"
     assert entry.reading_chunk(2, 1) == "five six"
     assert entry.reading_chunk(2, 2) == "one two three four"
+
+
+

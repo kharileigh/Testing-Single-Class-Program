@@ -29,14 +29,14 @@ class DiaryEntry:
         if wpm == 0:
             raise Exception("Cannot calculate reading time")
 
-        contents_word_count = len(self.contents.split())
+        contents_word_count = len(self.contents_words())
         return math.ceil(contents_word_count / wpm)
 
 
     def reading_chunk(self, wpm, minutes):
 
         words_user_can_read = wpm * minutes
-        words = self.contents.split()
+        words = self.contents_words()
 
         if self.read_so_far >= len(words):
             self.read_so_far = 0
@@ -49,5 +49,9 @@ class DiaryEntry:
         return " ".join(chunk_words)
 
 
+    #----- used by two previous functions -- to not repeat code
+    def contents_words(self):
+
+        return self.contents.split()
 
 
