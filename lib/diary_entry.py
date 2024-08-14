@@ -35,7 +35,7 @@ class DiaryEntry:
 
     def reading_chunk(self, wpm, minutes):
 
-        words_user_can_read = wpm + minutes
+        words_user_can_read = wpm * minutes
         words = self.contents.split()
 
         if self.read_so_far >= len(words):
@@ -45,7 +45,9 @@ class DiaryEntry:
         chunk_end = self.read_so_far + words_user_can_read
         chunk_words = words[chunk_start:chunk_end]
 
+        self.read_so_far = chunk_end
         return " ".join(chunk_words)
+
 
 
 

@@ -23,10 +23,13 @@ def test_format_with_title_and_contents_given():
     assert result == "My Title : Some contents"
 
 
+
 '''
+-------------------------------------------------------------------
 ARG : title & contents
 RETURN : num of words in title & contents
 '''
+# ------ ASSERTION SHOULD BE: 4
 def test_count_words_in_both_title_and_contents():
 
     entry = DiaryEntry("My Title", "Some contents")
@@ -36,6 +39,7 @@ def test_count_words_in_both_title_and_contents():
 
 
 '''
+-----------------------------------------------------------------
 ARG : wpm = 2, text = 2 words
 RETURN : 1 minute
 '''
@@ -80,10 +84,13 @@ def test_reading_time_wpm_of_zero():
     assert str(err.value) == "Cannot calculate reading time"
 
 
+
 '''
+-------------------------------------------------------------------
 ARG : contents = 6 words, wpm = 2, minutes = 1
 RETURN : first 2 words
 '''
+# ------ ASSERTION SHOULD BE: "one two"
 def test_reading_chunk_with_two_wpm_and_one_minute():
     entry = DiaryEntry("My Title", "one two three four five six")
     result = entry.reading_chunk(2, 1)
