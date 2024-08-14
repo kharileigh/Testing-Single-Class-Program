@@ -78,6 +78,106 @@ def test_check_beginning_with_special_character():
 
 '''
 --------------------------------------------------------------------------------------------
-ARG : count number of texts in check(text) equating to True
-RETURN : return int as a percentage
+count number of texts in check(text) equating to True = 2
+divide by total number of texts = 4
+multiply by 100
+RETURN : return int as a percentage = 50
 '''
+def test_percentage_good_fifty_percent():
+
+    grammar = GrammarStats()
+
+    #---- call multiple checks
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("3627904")
+    grammar.check("3627904")
+
+    result = grammar.percentage_good()
+
+    #----- 2 good, 2 bad = 50%
+    assert result == 50
+
+
+'''
+--------------------------------------------------------------------------------------------
+True = 3
+Total = 5
+Multiply by 100
+RETURN : 60
+'''
+def test_percentage_good_sixty_percent():
+
+    grammar = GrammarStats()
+
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("3627904")
+    grammar.check("3627904")
+
+    result = grammar.percentage_good()
+    assert result == 60
+
+
+'''
+--------------------------------------------------------------------------------------------
+True = 2
+Total = 8
+Multiply by 100
+RETURN : 25
+'''
+def test_percentage_good_twenty_five_percent():
+
+    grammar = GrammarStats()
+
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("3627904")
+    grammar.check("3627904")
+    grammar.check("3627904")
+    grammar.check("3627904")
+    grammar.check("3627904")
+    grammar.check("3627904")
+
+    result = grammar.percentage_good()
+    assert result == 25
+
+'''
+--------------------------------------------------------------------------------------------
+True = 4
+Total = 4
+Multiply by 100
+RETURN : 100
+'''
+def test_percentage_good_one_hundred_percent():
+
+    grammar = GrammarStats()
+
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("Love is a beautiful thing!")
+    grammar.check("Love is a beautiful thing!")
+
+    result = grammar.percentage_good()
+    assert result == 100
+
+
+'''
+--------------------------------------------------------------------------------------------
+True = 0
+Total = 4
+Multiply by 100
+RETURN : 0
+'''
+def test_percentage_good_zero_percent():
+
+    grammar = GrammarStats()
+    
+    grammar.check("3627904")
+    grammar.check("3627904")
+    grammar.check("3627904")
+    grammar.check("3627904")
+
+    result = grammar.percentage_good()
+    assert result == 0
